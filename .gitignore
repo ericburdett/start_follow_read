@@ -1,0 +1,6 @@
+warp-ctc
+pykaldi
+env
+*.pyc
+*.png
+*.jpg
