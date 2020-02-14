@@ -1,4 +1,4 @@
-# Start Follow Read - Eric Burdett
+# Start Follow Read - Additional Instructions
 This repository contains an updated version of Start-Follow-Read. It fixes some conda dependencies in the .yaml file and includes some helpful job scripts for running on BYU's Supercomputer. Included as well are some additional instructions to allow for easier use.
 
 ## PyTorch Source Code Fix
