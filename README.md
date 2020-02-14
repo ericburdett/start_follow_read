@@ -13,25 +13,26 @@ To get a basic version of Start-Follow-Read up and running, follow these steps:
 
 ### Create the Conda Environment
 
+If you do not have Anaconda installed yet for your user on the supercomputer, there is a file in the handwriting compute directory that will install Anaconda for you. Run the following script after you have navigated to this file in the compute directory.
+
+```
+sh Anaconda3-2019.03-Linux-x86_64.sh
+```
+
+If you have already installed Anaconda before but need the conda environment initialized, modify the following command with your username and the path to wherever your installation to Anaconda is found:
+
+```
+eval "$(/fslhome/<USERNAME>/anaconda3/bin/conda shell.bash hook)"
+```
+
 Create the environment from the dependency file. The .yaml in this forked repository should have all the dependencies up to date:
 
 ```
 conda env create -f environment.yaml
 ```
 
-If you do not have Anaconda installed yet for your user on the supercomputer, run the following script in the handwriting group compute directory:
+Activate the Start-Follow-Read environment to use the specific Start-Follow-Read dependencies:
 
-```
-sh Anaconda3-2019.03-Linux-x86_64.sh
-```
-
-If you have already installed Anaconda before but need the conda environment activated, modify the following command with your username and the path to wherever your installation to Anaconda is found:
-
-```
-eval "$(/fslhome/<USERNAME>/anaconda3/bin/conda shell.bash hook)"
-```
-
-Activate the Start-Follow-Read environment:
 ```
 conda activate sfr_env
 ```
@@ -54,11 +55,6 @@ nn/_functions/vision.py
 
 Comment out lines 27-34 and 46-59 and correct the indentation issues. We are simply removing the code contained in the body of the IF statements in the GridSample forward and backward functions.
 
-### Set the weights for Start-Follow-Read and ensure the config files are correct
-
-If you plan to use the pretrained weights for Start-Follow-Read, they can be downloaded from 'github.com/cwig/start_follow_read/releases'. The file including the weights is in 'snapshots.zip'.
-
-
 ### Run the Code
 
 Navigate to the Start-Follow-Read directory and open the job.sh file. This contains the code necessary to run a basic job on BYU's Supercomputer.
@@ -74,9 +70,31 @@ python run_hwr.py IMG_SOURCE_DIRECTORY sample_config_60.yaml IMG_DESTINATION_DIR
 python run_decode.py sample_config_60.yaml IMG_DESTINATION_DIRECTORY
 ```
 
+Note that the rest of the information in the job.sh file contains configuration settings for running on the Supercomputer. If you'd like more walltime, more nodes, gpu's, etc., you need to modify this file. Currently, the job.sh file will place the job in the test queue so that execution will begin almost immediately. However, bigger jobs will need to be placed in the normal queue.
+
+Submit the job to the supercomputer:
+```
+sbatch job.sh
+```
+
+Output for the job will be placed in a file called slurm-<JOB_NUMBER>.out.
+
+If you'd like to see the current status for the job. Run the following:
+
+```
+scontrol show job <JOB_NUMBER>
+```
+
+Note that the job number should be provided for you when you submit the job.
 
 ### Observe the Results
 
+Results should be available in the IMG_DESTINATION_DIRECTORY that you specified in the commands above.
+
+There should be 3 files image in this directory.
+* *.npz - The output files created from the run_hwr command
+* *.txt - Transcription of the image line by line
+* *.png - Visualization of what was produced from the start of line and line follower modules. Numbers here correspond to the line numbers in the .txt file.
 
 # Start Follow Read - Original Readme
 

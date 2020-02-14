@@ -6,11 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH -C 'pascal' # features syntax (use quotes): -C 'a&b&c&d'
 #SBATCH --mem-per-cpu=10240M   # memory per CPU core
-#SBATCH -J "egb-start-follow-read"   # job name
-#SBATCH --mail-user=burdett1@byu.edu   # email address
-#SBATCH --mail-type=BEGIN
-#SBATCH --mail-type=END
-#SBATCH --mail-type=FAIL
+#SBATCH -J "start-follow-read"   # job name
 #SBATCH --qos=test
 #SBATCH --gid=
 
