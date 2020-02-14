@@ -1,15 +1,16 @@
 # Start Follow Read - Additional Instructions
 This repository contains an updated version of Start-Follow-Read. It fixes some conda dependencies in the .yaml file and includes some helpful job scripts for running on BYU's Supercomputer. Included as well are some additional instructions to allow for easier use.
 
+Note that the instructions use the pretrained weights that were made available during the Start-Follow-Read release. If you want something besides the pretrained weights, you'll need to follow instructions in the original README for training, or point the sample_config_60.yaml file to your new set of weights instead of the ones contained in the ./data directory
+
 ## PyTorch Source Code Fix
 Unfortunately, there was a change made on a version of CUDNN that made Start-Follow-Read unusable on the supercomputer. Currently, there is a workaround by modifying a few lines of the pytorch source code to not use the broken CUDNN function and instead use a PyTorch implementation.
 
 To get a basic version of Start-Follow-Read up and running, follow these steps:
 1. Create the Conda Environment
 2. Modify the PyTorch source code found in the Conda Environment you are using
-3. Execute the 'run_hwr.py' command
-4. Execute the 'run_decode.py' command
-5. Access the results
+3. Execute job on the Supercomputer
+4. Access the results
 
 ### Create the Conda Environment
 
@@ -55,7 +56,7 @@ nn/_functions/vision.py
 
 Comment out lines 27-34 and 46-59 and correct the indentation issues. We are simply removing the code contained in the body of the IF statements in the GridSample forward and backward functions.
 
-### Run the Code
+### Execute job on the Supercomputer
 
 Navigate to the Start-Follow-Read directory and open the job.sh file. This contains the code necessary to run a basic job on BYU's Supercomputer.
 
