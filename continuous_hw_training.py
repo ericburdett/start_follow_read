@@ -1,7 +1,8 @@
 import torch
 from torch.utils.data import DataLoader
 from torch.autograd import Variable
-from warpctc_pytorch import CTCLoss
+from torch.nn import CTCLoss
+# from warpctc_pytorch import CTCLoss
 
 from hw import hw_dataset
 from hw import cnn_lstm

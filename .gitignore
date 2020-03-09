@@ -1,6 +1,7 @@
 warp-ctc
 pykaldi
 env
+*.tbz2
 *.pyc
 *.png
 *.jpg

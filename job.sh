@@ -24,6 +24,10 @@ eval "$(/fslhome/burdett1/anaconda3/bin/conda shell.bash hook)"
 
 conda activate sfr_env
 
+# Set up environment variables
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/anaconda3/lib/
+
+
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 # module load cuda/8.0
 # module load cudnn/6.0_cuda-8.0
@@ -31,9 +35,7 @@ conda activate sfr_env
 # module load python-pytorch
 # module load opencv/3/0
 
-python run_hwr.py ../french_imgs/ sample_config_60.yaml ../egb-out-gpu/ 2>&1 &
+python run_hwr.py ../french_imgs/ sample_config_60.yaml ../results/ 2>&1
 
-python run_decode.py sample_config_60.yaml ../egb-out-gpu/ 2>&1 &
-
-wait
+python run_decode.py sample_config_60.yaml ../results/ 2>&1
 
